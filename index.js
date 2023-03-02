@@ -16,7 +16,8 @@ app.get("/", (req,res) => {
     res.send({"Message":"welcome to WordPlayGaming.in"})
 })
 
-app.use("user",userRoutes);
+
+app.use("/user",userRoutes);
 
 
 

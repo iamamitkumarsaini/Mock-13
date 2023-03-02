@@ -4,11 +4,30 @@ require("dotenv").config();
 
 const userRoutes = express.Router();
 
+function randomWordsGenerator () {
+
 const words = [ "value","maid", "orange", "tearful", "jujube", "nectarine", "resolute", "basin", "thankful",
   "raspberry", "tangerine", "phone", "silent", "peace", "purpose", "zucchini", "effervescent", "woebegone",
   "spiritual", "jigsaw", "nirvana", "payment", "handsomely", "dysfunctional", "bittersweet", "nonchalant",
   "charming", "gobbledygook", "lackadaisical", "recalcitrant", "obsolete", "whippersnapper", "unarmed",
-  "caricature", "toothpaste", "ubiquity", "kinesthetic", "obeisant", "subsequent", "xenophobia", "vivacious" ];
+  "caricature", "toothpaste", "ubiquity", "kinesthetic", "obeisant", "subsequent", "xenophobia", "vivacious",
+  "obsequious", "tomatoes", "insidious", "screeching", "uptight", "bewildered", "questionable", "spotless" ];
+
+  return words[Math.floor(Math.random() * words.length)];
+
+}
+
+
+function randomWorsArray () {
+
+    let WordsArr = [];
+
+    for(let i=0; i<10; i++){
+        WordsArr.push(randomWordsGenerator())
+    }
+
+    return WordsArr;
+}
 
 
 
@@ -28,9 +47,11 @@ userRoutes.post("/info", async(req,res) => {
 })
 
 userRoutes.get("/play", async(req,res) => {
+
     try {
-        const random = Math.floor(Math.random()*words.length)
-        res.status(201).send({"word":words[random]})
+        const randomWordsArr = randomWorsArray();
+        console.log(randomWordsArr)
+        res.status(201).send(randomWordsArr)
     } 
     
     catch (err) {
